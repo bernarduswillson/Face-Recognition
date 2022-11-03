@@ -1,5 +1,4 @@
 import cv2
-import matplotlib.image as image
 
 def ImgToMtrx(img):
     image = cv2.imread(r"src/" + img)
