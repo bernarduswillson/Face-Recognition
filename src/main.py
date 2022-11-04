@@ -1,7 +1,8 @@
 import STEP1
+import numpy as np
+import matplotlib.pyplot as plt
 
-# x = "2side.png"
-# a = STEP1.ImgToMtrx(x)
-# print(a)
-
-STEP1.readFolder()
+a = STEP1.meanMtrx("pins_Zendaya")
+reshape = np.reshape(a,(256,256))
+plt.imshow(reshape, cmap='gray')
+plt.show()
