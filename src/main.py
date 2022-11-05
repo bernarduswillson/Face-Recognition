@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import time
 
 start=time.time()
-#a = STEP1.covariance2("tes doang")
-a = [[3,-2,0],[-2,3,0],[0,0,5]]
+a = STEP1.covariance2("pins_Alexandra Daddario")
+# a = [[3,-2,0],[-2,3,0],[0,0,5]]
 eigenvalues = eigenvalue.find_eigenvalues(a)
 print(eigenvalues)
 end=time.time()

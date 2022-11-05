@@ -45,7 +45,7 @@ def identity_matrix(dimensions):#bikin matrix identitas
     return matrix
 
 def characteristic_equation(matrix):
-    dimensions = [3, 3] #ganti 256,256
+    dimensions = [256, 256] #ganti 256,256
     return [[[a, -b] for a, b in zip(i, j)] for i, j in zip(matrix,
             identity_matrix(dimensions))]
 
