@@ -1,5 +1,6 @@
 import cv2
 import os
+import numpy as np
 
 def ImgToMtrx(img):
     image = cv2.imread(r"test/" + img)
@@ -59,9 +60,9 @@ def covariance2(pth):
     print(1)
     cov = covariance1(pth)
     print(2)
-    covT = transpose(cov)
+    covT = np.transpose(cov)
     print(3)
-    result = matrixmult(cov,covT)
+    result = np.matmul(cov,covT)
     print(256)
     return result
 
