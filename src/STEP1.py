@@ -34,7 +34,6 @@ def covariance1(pth):
     for file in dirs:
         a = ImgToMtrx(pth+"/"+file)
         for i in range(256*256):
-            print("cov[",c,"][",i,"]")
             cov[c][i] +=(a[i] - mean[i])
         c+=1
     return cov
@@ -44,25 +43,17 @@ def transpose(mtrx):
     return result
 
 def matrixmult(a,b):
-    print(1)
     result = [[0 for i in range(len(b[0]))] for j in range(len(a))]
-    print(2)
     for i in range(len(a)):
-        print(3)
         for j in range(len(b[0])):
-            print(256)
             for k in range(len(b)):
                 print(i,j,k)
                 result[i][j] += a[i][k] * b[k][j]
     return result
 
 def covariance2(pth):
-    print(1)
     cov = covariance1(pth)
-    print(2)
     covT = np.transpose(cov)
-    print(3)
     result = np.matmul(cov,covT)
-    print(256)
     return result
 
