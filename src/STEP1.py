@@ -3,22 +3,22 @@ import os
 
 def ImgToMtrx(img):
     image = cv2.imread(r"test/" + img)
-    image = cv2.resize(image,(64,64), interpolation = cv2.INTER_AREA)
+    image = cv2.resize(image,(256,256), interpolation = cv2.INTER_AREA)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     result = gray_image.flatten()
     return result
 
 def meanMtrx(pth):
-    mean = [0 for i in range(64*64)]
+    mean = [0 for i in range(256*256)]
     c=0
     path = r"test/" + pth
     dirs = os.listdir(path)
     for file in dirs:
         a = ImgToMtrx(pth+"/"+file)
         c+=1
-        for i in range(64*64):
+        for i in range(256*256):
             mean[i] += a[i]
-    for i in range(64*64):
+    for i in range(256*256):
         mean[i] /= c
     return mean
         
@@ -29,10 +29,10 @@ def covariance1(pth):
     path = r"test/" + pth
     dirs = os.listdir(path)
     c=0
-    cov = [[0 for i in range(64*64)] for j in range(len(dirs))]
+    cov = [[0 for i in range(256*256)] for j in range(len(dirs))]
     for file in dirs:
         a = ImgToMtrx(pth+"/"+file)
-        for i in range(64*64):
+        for i in range(256*256):
             print("cov[",c,"][",i,"]")
             cov[c][i] +=(a[i] - mean[i])
         c+=1
@@ -49,7 +49,7 @@ def matrixmult(a,b):
     for i in range(len(a)):
         print(3)
         for j in range(len(b[0])):
-            print(4)
+            print(256)
             for k in range(len(b)):
                 print(i,j,k)
                 result[i][j] += a[i][k] * b[k][j]
@@ -62,6 +62,6 @@ def covariance2(pth):
     covT = transpose(cov)
     print(3)
     result = matrixmult(cov,covT)
-    print(4)
+    print(256)
     return result
 
