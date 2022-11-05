@@ -1,32 +1,8 @@
 import numpy as np
 
 
-def get_dimensions(matrix):#bisa didelete
+def get_dimensions(matrix):
     return [len(matrix), len(matrix[0])]
-
-def find_determinant(matrix, excluded=1):
-    dimensions = [3,3]#ganti 256,256
-    if dimensions == [2, 2]:
-        return excluded * ((matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]))
-    else:
-        new_matrices = []
-        excluded = []
-        exclude_row = 0
-        for exclude_column in range(dimensions[1]):
-            tmp = []
-            excluded.append(matrix[exclude_row][exclude_column])
-            for row in range(1, dimensions[0]):
-                tmp_row = []
-                for column in range(dimensions[1]):
-                    if (row != exclude_row) and (column != exclude_column):
-                        tmp_row.append(matrix[row][column])
-                tmp.append(tmp_row)
-            new_matrices.append(tmp)
-        determinants = [find_determinant(new_matrices[j], excluded[j]) for j in range(len(new_matrices))]
-        determinant = 0
-        for i in range(len(determinants)):
-            determinant += ((-1)**i)*determinants[i]
-        return determinant
 
 def list_multiply(list1, list2): #perkalian
     result = [0 for _ in range(len(list1) + len(list2) - 1)]
@@ -69,7 +45,7 @@ def identity_matrix(dimensions):#bikin matrix identitas
     return matrix
 
 def characteristic_equation(matrix):
-    dimensions = [3,3] #ganti 256,256
+    dimensions = [3, 3] #ganti 256,256
     return [[[a, -b] for a, b in zip(i, j)] for i, j in zip(matrix,
             identity_matrix(dimensions))]
 

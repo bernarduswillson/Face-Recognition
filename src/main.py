@@ -7,7 +7,7 @@ import time
 start=time.time()
 #a = STEP1.covariance2("tes doang")
 a = [[3,-2,0],[-2,3,0],[0,0,5]]
-eigenvalues = eigenvalue.characteristic_equation(a)
+eigenvalues = eigenvalue.find_eigenvalues(a)
 print(eigenvalues)
 end=time.time()
 print(end-start)
