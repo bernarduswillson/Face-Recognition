@@ -22,7 +22,6 @@ def meanMtrx(pth):
     for i in range(256*256):
         mean[i] /= c
     return mean
-        
 
     
 def covariance1(pth):
