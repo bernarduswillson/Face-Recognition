@@ -56,10 +56,8 @@ def upload_file1():
     img1 = img1.resize((256,256), Image.ANTIALIAS)
     img1 = ImageTk.PhotoImage(img1)
 
-imgb1 = Image.open("src/GUI/Components/button.png")
-imgb1 = imgb1.resize((70,50), Image.ANTIALIAS)
-login_btn1 = ImageTk.PhotoImage(imgb1)
-button1 = Button(frame_left, image = login_btn1, borderwidth = 0, height=20, bg="grey81", activebackground='grey81', command=upload_file1)
+
+button1 = ttk.Button(frame_left, text="Upload file", command=upload_file1)
 button1.pack()
 button1.place(x=20, y=45)
 
@@ -83,10 +81,8 @@ def upload_file2():
     nofile2["text"] = filename
     nofile2["font"] = "Helvatica 8"
 
-imgb2 = Image.open("src/GUI/Components/button.png")
-imgb2 = imgb2.resize((70,50), Image.ANTIALIAS)
-login_btn2 = ImageTk.PhotoImage(imgb2)
-button2 = Button(frame_left, image = login_btn2, borderwidth = 0, height=20, bg="grey81", activebackground='grey81', command=upload_file2)
+
+button2 = ttk.Button(frame_left, text="upload file", command=upload_file2)
 button2.pack()
 button2.place(x=20, y=125)
 
@@ -113,5 +109,7 @@ exetime.place(x=10, y=25)
 
 time=Label(frame_bot, text="00:00", font='Helvatica 12', bg="grey81", fg="green4")
 time.place(x=130, y=25)
+
+sv_ttk.set_theme("light")
 
 root.mainloop()
