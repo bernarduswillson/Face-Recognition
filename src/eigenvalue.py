@@ -24,8 +24,11 @@ def QR_Decomposition(A):
 
     return Q, R
 
-def carieigvals(a) :
-    for i in range(100) :
-        q, r = QR_Decomposition(a)
-        a = np.dot(r, q)
-    return np.diag(a)   
+def carieigvals(A):
+    pQ = np.eye(A.shape[0])
+    X = A.copy()
+    for i in range(100):
+        Q,R = np.linalg.qr(X)
+        pQ = pQ @ Q
+        X = R @ Q
+    return np.diag(X), pQ

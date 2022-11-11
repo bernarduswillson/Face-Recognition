@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import time
 
 start=time.time()
-a = STEP1.covariance2("pins_Alexandra Daddario")
+a = STEP1.covariance2("tes doang")
 # a = [[1,1,0],[1,0,1],[0,0,1]]
 a = np.array(a)
 #eigenvalues = qr.qr_decomp(a)
