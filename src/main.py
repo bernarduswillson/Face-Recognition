@@ -7,10 +7,10 @@ import qr
 
 start=time.time()
 a = STEP1.covariance2("tes doang")
-#a = [[3,-2,0],[-2,3,0],[0,0,5]]
-#a = np.array(a)
+a = [[1,1,0],[1,0,1],[0,0,1]]
+a = np.array(a)
 #eigenvalues = qr.qr_decomp(a)
-eigenvalues = eigenvalue.QR_eigvals(a)
+eigenvalues = eigenvalue.carieigvals(a)
 print(eigenvalues)
 print("---------------------------------")
 #eigen = np.linalg.qr(a)
