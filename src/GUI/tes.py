@@ -77,7 +77,7 @@ def upload_file2():
     label.place(x=387, y=161)
     filename = filename.split('/')[len(filename.split('/'))-1]
     nofile2["text"] = filename
-    nofile2["font"] = "century 14"
+    nofile2["font"] = "century 10"
 
 
 button2 = ttk.Button(text="upload file", command=upload_file2)
