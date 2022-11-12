@@ -32,3 +32,4 @@ def carieigvals(A):
         pQ = pQ @ Q
         X = R @ Q
     return np.diag(X), pQ
+

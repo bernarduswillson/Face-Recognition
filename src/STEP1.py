@@ -37,21 +37,8 @@ def covariance1(pth):
         c+=1
     return cov
 
-def transpose(mtrx):
-    result = [[mtrx[j][i] for j in range(len(mtrx))] for i in range(len(mtrx[0]))]
-    return result
-
-def matrixmult(a,b):
-    result = [[0 for i in range(len(b[0]))] for j in range(len(a))]
-    for i in range(len(a)):
-        for j in range(len(b[0])):
-            for k in range(len(b)):
-                result[i][j] += a[i][k] * b[k][j]
-    return result
-
 def covariance2(pth):
     cov = covariance1(pth)
     covT = np.transpose(cov)
     result = np.matmul(cov,covT)
     return result
-
