@@ -88,8 +88,7 @@ for i in range (256):
 #print(eigenface)
 #m,n = eigenface.shape
 #print(m,n)
-end=time.time()
-print(end-start)
+
 # plt.imshow(result1, cmap='gray')
 # plt.show()
 # plt.imshow(result2, cmap='gray')
@@ -138,5 +137,7 @@ for i in range(len(x)):
             print(dirs[j])
             print(x[i][0])
 
+end=time.time()
+print(end-start)
 
 
