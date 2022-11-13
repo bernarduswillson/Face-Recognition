@@ -7,14 +7,14 @@ import ohm
 import os
 
 start=time.time()
-a = STEP1.covariance2("data")
+a = STEP1.covariance2("DATASET")
 #a = [[1,1,0],[1,0,1],[0,0,1]]
 #a = np.array(a)
 #eigenvalues = qr.qr_decomp(a)
-normalized_mat = STEP1.covariance1("data")
+normalized_mat = STEP1.covariance1("DATASET")
 covT = np.transpose(normalized_mat)
 
-test=STEP1.ImgToMtrx("pins_Alexandra Daddario/Alexandra Daddario2_311.jpg")
+test=STEP1.ImgToMtrx("data/barack obama20_680.jpg")
 test=np.array(test)
 test=test.flatten()
 normtest=test-STEP1.meanMtrx("pins_Alexandra Daddario")
@@ -120,24 +120,23 @@ for i in range(len(normalized_mat)):
 
 
 
-min=99999999999999999999
 
+x=[]
 for i in range(len(test)):
     z=ohm.distance(test[i])
-    print(z)
-    if z<min:
-        min=z
-        index=i
+    x.append([z,i])
 
-dirs= os.listdir("test/data")
+x.sort(key=lambda x: x[0])
 
-xxx=0
+print(x)
 
-for i in range(len(dirs)):
-    if i==index:
-        print(dirs[i])
+dirs = os.listdir("test/DATASET")
 
-
+for i in range(len(x)):
+    for j in range(len(dirs)):
+        if x[i][1]==j:
+            print(dirs[j])
+            print(x[i][0])
 
 
 
