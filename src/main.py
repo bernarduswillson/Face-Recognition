@@ -3,14 +3,22 @@ import eigenvalue
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import ohm
+import os
 
 start=time.time()
-a = STEP1.covariance2("pins_Alexandra Daddario")
+a = STEP1.covariance2("data")
 #a = [[1,1,0],[1,0,1],[0,0,1]]
 #a = np.array(a)
 #eigenvalues = qr.qr_decomp(a)
-normalized_mat = STEP1.covariance1("pins_Alexandra Daddario")
+normalized_mat = STEP1.covariance1("data")
 covT = np.transpose(normalized_mat)
+
+test=STEP1.ImgToMtrx("pins_Alexandra Daddario/Alexandra Daddario2_311.jpg")
+test=np.array(test)
+test=test.flatten()
+normtest=test-STEP1.meanMtrx("pins_Alexandra Daddario")
+
 #shapess = covT.shape
 #print (shapess)
 eigenvalues, eigenvectors = eigenvalue.carieigvals(a)
@@ -46,7 +54,7 @@ a = 0
 #         a +=1
 
 resultarr=[]
-for i in range(len(eigenface)):
+for i in range(10):
     eigenfaces=eigenface[i]
     result=[[0 for i in range(256)] for j in range(256)]
     for i in range (256):
@@ -90,6 +98,46 @@ print(end-start)
 # plt.show()
 # plt.imshow(result4, cmap='gray')
 # plt.show()
-for i in range(len(resultarr)):
-    plt.imshow(resultarr[i], cmap='gray')
-    plt.show()
+
+# ohm1=ohm.ohm(resultarr,normalized_mat[0])
+# ohm2=ohm.ohm(resultarr,normalized_mat[1])
+ohmtest=ohm.ohm(resultarr,normtest)
+
+# newohm=np.subtract(ohm1,ohmtest)
+# newohm2=np.subtract(ohm2,ohmtest)
+
+# print(ohm.distance(newohm))
+# print(ohm.distance(newohm2))
+
+test=[]
+
+
+for i in range(len(normalized_mat)):
+    x=ohm.ohm(resultarr,normalized_mat[i])
+    newx=np.subtract(x,ohmtest)
+    test.append(newx)
+
+
+
+
+min=99999999999999999999
+
+for i in range(len(test)):
+    z=ohm.distance(test[i])
+    print(z)
+    if z<min:
+        min=z
+        index=i
+
+dirs= os.listdir("test/data")
+
+xxx=0
+
+for i in range(len(dirs)):
+    if i==index:
+        print(dirs[i])
+
+
+
+
+
