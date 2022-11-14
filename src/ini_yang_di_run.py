@@ -1,11 +1,12 @@
-import STEP1
-import eigenvalue
+import DataCov
+import Eigen
+import EigenFace
 import cv2
 import os
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-import WWW
+import Euclidian
 from tkinter import *
 from PIL import Image
 from PIL import ImageTk
@@ -16,50 +17,29 @@ import sv_ttk
 
 
 def facialrecog():
-    global f1,d1,img3,result,result2,wkt,result3
+    global f1,t1,img3,result,result2,wkt,result3
     start=time.time()
-    a = STEP1.covariance2(f1)
-    normalized_mat = STEP1.covariance1(f1)
-    covT = np.transpose(normalized_mat)
-    eigenvalues, eigenvectors = eigenvalue.carieigvals(a)
-    eigenface = np.matmul(covT,eigenvectors)
-    eigenface = np.transpose(eigenface)
-    a = 0
-    resultarr=[]
-    for i in range(5):
-        eigenfaces=eigenface[i]
-        result=[[0 for i in range(256)] for j in range(256)]
-        for i in range (256):
-            for j in range (256) :
-                result[i][j]+=eigenfaces[a]
-                a +=1
-        a=0
-        resultarr.append(result)
-
-    a = WWW.W(resultarr,f1)
-    b = WWW.WTes(resultarr,f1,t1)
-    z,ii = WWW.EuclideanDistance(a,b)
-    print(z,ii)
-    threshold=750000000
-    kemiripan=((threshold-z)/threshold)*100
+    EigenFaces = EigenFace.EigenFace(f1)
+    WData = Euclidian.WData(EigenFaces, f1)
+    WTest = Euclidian.WTest(EigenFaces, f1, t1)
+    val, index = Euclidian.MinEuclideanDistance(WData,WTest)
+    print(val, index)
     print("---------------------------------------")
-
-
-
     path = r"" + f1
     dirs = os.listdir(path)
     k = 0
+    threshold=750000000
     for file in dirs:
-        if (k==ii):
-            print(ii)
-            print(z)
-            print("kemiripan: ",kemiripan,"%")
+        if (k==index):
+            print(index)
+            print(val)
             print(file)
-            f1=path+"/"+file
+            f1=f1+"/"+file
             break
-        k+=1
+        k += 1
+    kemiripan=((threshold-val)/threshold)*100
     kemiripan=round(kemiripan,2)
-    distance=round(z,2)
+    distance=round(val,2)
     tm=time.time()-start
     tm=round(tm,2)
     img3 = Image.open(f1)
