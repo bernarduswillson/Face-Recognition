@@ -3,7 +3,7 @@ import os
 import numpy as np
 
 def ImgToMtrx(img):
-    image = cv2.imread(r"test/" + img)
+    image = cv2.imread(r""+img)
     image = cv2.resize(image,(256,256), interpolation = cv2.INTER_AREA)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     result = gray_image.flatten()
@@ -12,7 +12,7 @@ def ImgToMtrx(img):
 def meanMtrx(pth):
     mean = [0 for i in range(256*256)]
     c=0
-    path = r"test/" + pth
+    path = r"" + pth
     dirs = os.listdir(path)
     for file in dirs:
         a = ImgToMtrx(pth+"/"+file)
@@ -26,7 +26,7 @@ def meanMtrx(pth):
     
 def covariance1(pth):
     mean = meanMtrx(pth)
-    path = r"test/" + pth
+    path = r"" + pth
     dirs = os.listdir(path)
     c=0
     cov = [[0 for i in range(256*256)] for j in range(len(dirs))]

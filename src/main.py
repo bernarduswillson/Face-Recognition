@@ -7,17 +7,17 @@ import ohm
 import os
 
 start=time.time()
-a = STEP1.covariance2("DATASET")
+a = STEP1.covariance2("test/DATASET")
 #a = [[1,1,0],[1,0,1],[0,0,1]]
 #a = np.array(a)
 #eigenvalues = qr.qr_decomp(a)
-normalized_mat = STEP1.covariance1("DATASET")
+normalized_mat = STEP1.covariance1("test/DATASET")
 covT = np.transpose(normalized_mat)
 
-test=STEP1.ImgToMtrx("Selena Gomez191_4391.jpg")
+test=STEP1.ImgToMtrx("test/Selena Gomez191_4391.jpg")
 test=np.array(test)
 test=test.flatten()
-normtest=test-STEP1.meanMtrx("DATASET")
+normtest=test-STEP1.meanMtrx("test/DATASET")
 
 #shapess = covT.shape
 #print (shapess)
