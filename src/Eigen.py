@@ -20,7 +20,7 @@ def QR_Decomposition(cov):
 def EigenV(cov):
     pQ = np.eye(cov.shape[0])
     for i in range(100):
-        Q,R = np.linalg.qr(cov)
+        Q,R = QR_Decomposition(cov)
         pQ = pQ @ Q
         cov = R @ Q
     return np.diag(cov), pQ

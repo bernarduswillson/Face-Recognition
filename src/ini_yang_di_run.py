@@ -25,36 +25,53 @@ def facialrecog():
     val, index = Euclidian.MinEuclideanDistance(WData,WTest)
     print(val, index)
     print("---------------------------------------")
-    path = r"" + f1
-    dirs = os.listdir(path)
-    k = 0
     threshold=750000000
-    for file in dirs:
-        if (k==index):
-            print(index)
-            print(val)
-            print(file)
-            f1=f1+"/"+file
-            break
-        k += 1
-    kemiripan=((threshold-val)/threshold)*100
-    kemiripan=round(kemiripan,2)
-    distance=round(val,2)
-    tm=time.time()-start
-    tm=round(tm,2)
-    img3 = Image.open(f1)
-    img3 = img3.resize((256,256), Image.ANTIALIAS)
-    img3 = ImageTk.PhotoImage(img3)
-    label = Label(image = img3)
-    label.place(x=672, y=161)
-    wkt=Label(text=str(tm)+" detik", font='century 18', fg="green", bg="peachpuff3")
-    wkt.place(x=515, y=473)
-    result=Label(text="kemiripan: "+str(kemiripan)+"%", font='century 14',fg="green",bg="peachpuff3")
-    result.place(x=73, y=355)
-    result2=Label(text="Distance: "+str(distance), font='century 14',fg="green",bg="peachpuff3")
-    result2.place(x=73, y=377)
-    result3=Label(text="file: "+str(file), font='century 14',fg="green",bg="peachpuff3")
-    result3.place(x=73, y=400)
+    if val<threshold:
+        path = r"" + f1
+        dirs = os.listdir(path)
+        k = 0
+        for file in dirs:
+            if (k==index):
+                print(index)
+                print(val)
+                print(file)
+                f1=f1+"/"+file
+                break
+            k += 1
+        kemiripan=((threshold-val)/threshold)*100
+        kemiripan=round(kemiripan,2)
+        distance=round(val,2)
+        tm=time.time()-start
+        tm=round(tm,2)
+        img3 = Image.open(f1)
+        img3 = img3.resize((256,256), Image.ANTIALIAS)
+        img3 = ImageTk.PhotoImage(img3)
+        label = Label(image = img3)
+        label.place(x=672, y=161)
+        wkt=Label(text=str(tm)+" detik", font='century 18', fg="green", bg="peachpuff3")
+        wkt.place(x=515, y=473)
+        result=Label(text="kemiripan: "+str(kemiripan)+"%", font='century 14',fg="green",bg="peachpuff3")
+        result.place(x=73, y=355)
+        result2=Label(text="Distance: "+str(distance), font='century 14',fg="green",bg="peachpuff3")
+        result2.place(x=73, y=377)
+        result3=Label(text="file: "+str(file), font='century 14',fg="green",bg="peachpuff3")
+        result3.place(x=73, y=400)
+    else:
+        tm=time.time()-start
+        tm=round(tm,2)
+        wkt=Label(text=str(tm)+" detik", font='century 18', fg="green", bg="peachpuff3")
+        wkt.place(x=515, y=473)
+        result=Label(text="kemiripan: 0%", font='century 14',fg="green",bg="peachpuff3")
+        result.place(x=73, y=355)
+        result2=Label(text="Distance: >750000000", font='century 14',fg="green",bg="peachpuff3")
+        result2.place(x=73, y=377)
+        result3=Label(text="file: -----", font='century 14',fg="green",bg="peachpuff3")
+        result3.place(x=73, y=400)
+        img3 = Image.open("src/GUI/Components/noimage.jpg")
+        img3 = img3.resize((256,256), Image.ANTIALIAS)
+        img3 = ImageTk.PhotoImage(img3)
+        label = Label(image = img3)
+        label.place(x=672, y=161)
 
 
 
