@@ -14,10 +14,10 @@ a = STEP1.covariance2("DATASET")
 normalized_mat = STEP1.covariance1("DATASET")
 covT = np.transpose(normalized_mat)
 
-test=STEP1.ImgToMtrx("data/barack obama20_680.jpg")
+test=STEP1.ImgToMtrx("Selena Gomez191_4391.jpg")
 test=np.array(test)
 test=test.flatten()
-normtest=test-STEP1.meanMtrx("pins_Alexandra Daddario")
+normtest=test-STEP1.meanMtrx("DATASET")
 
 #shapess = covT.shape
 #print (shapess)
@@ -131,7 +131,7 @@ print(x)
 
 dirs = os.listdir("test/DATASET")
 
-for i in range(len(x)):
+for i in range(5):
     for j in range(len(dirs)):
         if x[i][1]==j:
             print(dirs[j])
