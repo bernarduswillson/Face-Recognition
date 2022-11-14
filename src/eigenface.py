@@ -1,25 +1,25 @@
-import STEP1
-import eigenvalue
+import DataCov
+import Eigen
 import numpy as np
+import matplotlib.pyplot as plt
 
-a = STEP1.covariance2("DATASET")
-normalized_mat = STEP1.covariance1("DATASET")
-covT = np.transpose(normalized_mat)
-test=STEP1.ImgToMtrx("data/B94A01FC-8B25-4CEE-AB70-42AC0E0BF03C.jpg")
-test=np.array(test)
-test=test.flatten()
-normtest=test-STEP1.meanMtrx("DATASET")
-eigenvalues, eigenvectors = eigenvalue.carieigvals(a)
-eigenface = np.matmul(covT,eigenvectors)
-eigenface = np.transpose(eigenface)
-a = 0
-resultarr=[]
-for i in range(10):
-    eigenfaces=eigenface[i]
-    result=[[0 for i in range(256)] for j in range(256)]
-    for i in range (256):
-        for j in range (256) :
-            result[i][j]+=eigenfaces[a]
-            a +=1
-    a=0
-    resultarr.append(result)
+def EigenFace(pth):
+    cov = DataCov.covariance(pth)
+    norm = DataCov.normalized(pth)
+    normT = np.transpose(norm)
+    EigenVal, EigenVec = Eigen.EigenV(cov)
+    EigenFace = np.matmul(normT,EigenVec)
+    EigenFace = np.transpose(EigenFace)
+    k = 0
+    resultarr = []
+    leneigen = round(len(norm)*0.06)
+    for i in range(leneigen):
+        EigenFaces = EigenFace[i]
+        result=[[0 for i in range(256)] for j in range(256)]
+        for i in range (256):
+            for j in range (256) :
+                result[i][j] += EigenFaces[k]
+                k += 1
+        k = 0
+        resultarr.append(result)
+    return resultarr
