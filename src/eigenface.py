@@ -1,7 +1,6 @@
 import DataCov
 import Eigen
 import numpy as np
-import matplotlib.pyplot as plt
 
 def EigenFace(pth):
     cov = DataCov.covariance(pth)
