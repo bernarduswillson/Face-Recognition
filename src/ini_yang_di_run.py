@@ -82,7 +82,7 @@ def facialrecog():
 root = Tk()
 root.title("Face Recognition") 
 root.geometry("992x558")
-bgimg= ImageTk.PhotoImage(file = "src/GUI/Components/vw.jpg")
+bgimg= ImageTk.PhotoImage(file = "src/GUI/Components/final.jpg")
 limg= Label(root, i=bgimg)
 limg.pack()
 
