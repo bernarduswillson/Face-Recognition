@@ -35,7 +35,7 @@ def facialrecog():
                 print(index)
                 print(val)
                 print(file)
-                f1=f1+"/"+file
+                closeimg=f1+"/"+file
                 break
             k += 1
         kemiripan=((threshold-val)/threshold)*100
@@ -43,7 +43,7 @@ def facialrecog():
         distance=round(val,2)
         tm=time.time()-start
         tm=round(tm,2)
-        img3 = Image.open(f1)
+        img3 = Image.open(closeimg)
         img3 = img3.resize((256,256), Image.ANTIALIAS)
         img3 = ImageTk.PhotoImage(img3)
         label = Label(image = img3)
@@ -72,6 +72,7 @@ def facialrecog():
         img3 = ImageTk.PhotoImage(img3)
         label = Label(image = img3)
         label.place(x=672, y=161)
+
 
 
 
@@ -151,14 +152,35 @@ def upload_file2():
     nofile2["font"] = "century 10"
     t1=filename
 
+def clear():
+    global img2,t1,img3,f1
+    img2 = Image.open("src/GUI/Components/noimage.jpg")
+    img2 = img2.resize((256,256), Image.ANTIALIAS)
+    img2 = ImageTk.PhotoImage(img2)
+    label = Label(image = img2)
+    label.place(x=387, y=161)
+    nofile2["text"] = "No File Chosen"
+    nofile2["font"] = "century 12"
+    t1=""
+    img3 = Image.open("src/GUI/Components/noimage.jpg")
+    img3 = img3.resize((256,256), Image.ANTIALIAS)
+    img3 = ImageTk.PhotoImage(img3)
+    label = Label(image = img3)
+    label.place(x=672, y=161)
+
+
 
 button2 = ttk.Button(text="upload file", command=upload_file2)
 button2.pack()
 button2.place(x=73, y=250)
 
-button2 = ttk.Button(text="calculate", command=facialrecog)
-button2.pack()
-button2.place(x=135, y=325)
+button3 = ttk.Button(text="calculate", command=facialrecog)
+button3.pack()
+button3.place(x=135, y=325)
+
+button4 = ttk.Button(text="clear", command=clear)
+button4.pack()
+button4.place(x=880, y=474)
 
 wkt=Label(text="00:00", font='century 24', fg="green4", bg="peachpuff3")
 wkt.place(x=515, y=468)
