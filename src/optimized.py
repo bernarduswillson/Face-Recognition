@@ -53,8 +53,7 @@ def facialrecog():
     else:
         tm=time.time()-start
         tm=round(tm,2)
-        wkt=Label(text=str(tm)+" detik", font='century 18', fg="green", bg="peachpuff3")
-        wkt.place(x=515, y=473)
+        wkt.configure(text=str(tm)+" detik")
         result.configure(text="kemiripan: 0%", font='century 14',fg="red",bg="peachpuff3")
         result2.configure(text="Distance: 0", font='century 14',fg="red",bg="peachpuff3")
         result3.configure(text="file: -", font='century 14',fg="red",bg="peachpuff3")
