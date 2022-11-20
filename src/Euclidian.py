@@ -73,12 +73,17 @@ def WTest(EFMatrix, pthdata, pth):
 def MinEuclideanDistance(WTest,WData):
     min = 9999999999999999999
     selisih = [0 for i in range(len(WTest))]
+    t=0
+    max=0
     for i in range(len(WTest)):
         selisih[i] = np.subtract(WData,WTest[i])
         selisih[i] = np.square(selisih[i])
         selisih[i] = np.sum(selisih[i])
         selisih[i] = np.sqrt(selisih[i])
+        if (max<selisih[i]):
+            max = selisih[i]
         if (min > selisih[i]):
             min = selisih[i]
             index = i
-    return min, index
+        t=max-min
+    return min, index, t
