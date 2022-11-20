@@ -74,9 +74,6 @@ def facialrecog():
         label.place(x=672, y=161)
 
 
-
-
-
 root = Tk()
 root.title("Face Recognition") 
 root.geometry("992x558")
@@ -173,6 +170,41 @@ def clear():
 button2 = ttk.Button(text="upload file", command=upload_file2)
 button2.pack()
 button2.place(x=73, y=250)
+
+def upload_file3():
+    video_capture = cv2.VideoCapture(0)
+    faceCascade = cv2.CascadeClassifier('src\haar.xml')
+    c=1
+    ct=0
+    while True:
+        time.sleep(0.05)
+        ct+=1
+        ret, frame = video_capture.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = faceCascade.detectMultiScale(gray, 1.1, 5)
+        for (x,y,w,h) in faces:
+            cv2.rectangle(frame,(x-40,y-40),(x+w+40,y+h+40),(255,0,0),2)
+        if ct>=200:
+            filename="src/test"+str(c)+".jpg"
+            img=frame
+            crop_img = img[y-40:y+h+40, x-40:x+w+40]
+            cv2.imwrite(filename,crop_img)
+            image = cv2.imread(filename)
+            image = cv2.resize(image,(256,256), interpolation = cv2.INTER_AREA)
+            gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            result = gray_image.flatten()
+            # DISINI UDAH DAPET MATRIXNYA TINGGAL SAMBUNGIN KE EUCLIDIANCAM
+            c+=1
+            ct=0
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+   
+    
+
+button3 = ttk.Button(text="upload file", command=upload_file3)
+button3.pack()
+button3.place(x=73, y=500)
+
 
 button3 = ttk.Button(text="calculate", command=facialrecog)
 button3.pack()

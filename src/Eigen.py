@@ -30,5 +30,3 @@ def EigenV(cov):
         pQ = pQ @ Q
         cov = R @ Q
     return np.diag(cov), pQ
-
-

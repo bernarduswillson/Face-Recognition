@@ -1,16 +1,13 @@
 import DataCov
 import Eigen
 import numpy as np
+import matplotlib.pyplot as plt
 
 def EigenFace(pth):
     cov = DataCov.covariance(pth)
     norm = DataCov.normalized(pth)
-    # normT = np.transpose(norm)
     EigenVal, EigenVec = Eigen.EigenV(cov)
     EigenFace = np.matmul(EigenVec,norm)
-    # EigenFace = np.matmul(normT,EigenVec)
-    # EigenFace = np.transpose(EigenFace)
-    print(EigenFace.shape)
     k = 0
     resultarr = []
     leneigen = round(len(norm)*0.06)
