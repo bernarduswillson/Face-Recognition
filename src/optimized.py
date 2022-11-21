@@ -20,10 +20,11 @@ def facialrecog():
     global f1,t1,img3,result,result2,wkt,result3
     start=time.time()
     WTest = Euclidian.WTest(EigenFaces, f1, t1)
-    val, index = Euclidian.MinEuclideanDistance(WData,WTest)
+    val, index, t = Euclidian.MinEuclideanDistance(WData,WTest)
     print(val, index)
     print("---------------------------------------")
-    threshold=750000000
+    threshold = t/4
+    print("Threshold: ",threshold)
     if val<threshold:
         path = r"" + f1
         dirs = os.listdir(path)
@@ -47,14 +48,13 @@ def facialrecog():
         label = Label(image = img3)
         label.place(x=672, y=161)
         wkt.configure(text=str(tm)+" detik")
-        result.configure(text="kemiripan: "+str(kemiripan)+"%",font="century 13")
-        result2.configure(text="jarak: "+str(distance),font="century 13")
-        result3.configure(text="file: "+str(file),font="century 13")
+        result.configure(text="kemiripan: "+str(kemiripan)+"%",font="century 13",fg="green")
+        result2.configure(text="jarak: "+str(distance),font="century 13",fg="green")
+        result3.configure(text="file: "+str(file),font="century 13",fg="green")
     else:
         tm=time.time()-start
         tm=round(tm,2)
-        wkt=Label(text=str(tm)+" detik", font='century 18', fg="green", bg="peachpuff3")
-        wkt.place(x=515, y=473)
+        wkt.configure(text=str(tm)+" detik")
         result.configure(text="kemiripan: 0%", font='century 14',fg="red",bg="peachpuff3")
         result2.configure(text="Distance: 0", font='century 14',fg="red",bg="peachpuff3")
         result3.configure(text="file: -", font='century 14',fg="red",bg="peachpuff3")

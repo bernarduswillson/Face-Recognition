@@ -55,35 +55,30 @@ def WData(EFMatrix, pth):
         WTotal.append(W[i])
     return WTotal
 
-def normalizedT(pthdata, pth):
+def normalizedT(pthdata, MtrxTest):
     mean = meanMtrx(pthdata)
     norm = [[0 for i in range(256)] for j in range(256)]
-    a = ImgToMtrx(pth)
+    a = MtrxTest 
     for i in range(256):
         for j in range(256):
             norm[i][j] += (a[i][j] - mean[i][j])
     return norm
 
-def WTest(EFMatrix, pthdata, pth):
+def WTest(EFMatrix, pthdata, MtrxTest):
     W = [[0 for i in range(256)] for j in range(256)]
-    norm = normalizedT(pthdata, pth)
+    norm = normalizedT(pthdata, MtrxTest)
     W = np.matmul(norm, EFSum(EFMatrix))
     return W
 
 def MinEuclideanDistance(WTest,WData):
     min = 9999999999999999999
     selisih = [0 for i in range(len(WTest))]
-    t=0
-    max=0
     for i in range(len(WTest)):
         selisih[i] = np.subtract(WData,WTest[i])
         selisih[i] = np.square(selisih[i])
         selisih[i] = np.sum(selisih[i])
         selisih[i] = np.sqrt(selisih[i])
-        if (max<selisih[i]):
-            max = selisih[i]
         if (min > selisih[i]):
             min = selisih[i]
             index = i
-        t=max-min
-    return min, index, t
+    return min, index
