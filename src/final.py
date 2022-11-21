@@ -128,8 +128,12 @@ def choosefolder():
     f1short=f1.split('/')[len(f1.split('/'))-1]
     nofile1["text"] = f1short
     nofile1["font"] = "century 10"
+    start=time.time()
     EigenFaces = EigenFace.EigenFace(f1)
     WData = Euclidian.WData(EigenFaces, f1)
+    tm=time.time()-start
+    tm=round(tm,2)
+    wkt2.configure(text=str(tm)+" detik")
 
 
 # def upload_file1():
@@ -210,6 +214,9 @@ button3.place(x=73, y=280)
 
 wkt=Label(text="00:00", font='century 24', fg="green4", bg="peachpuff3")
 wkt.place(x=515, y=468)
+
+wkt2=Label(text="00:00", font='century 24', fg="green4", bg="peachpuff3")
+wkt2.place(x=800, y=468)
 
 sv_ttk.set_theme("light")
 
