@@ -16,6 +16,33 @@ from tkinter import ttk
 import sv_ttk
 
 
+def cam():
+    global img2,t1
+    faceCascade = cv2.CascadeClassifier('/Users/Radit./Documents/kelas/smt3/Algeo/Algeo02-21021/src/haar.xml')
+    cap = cv2.VideoCapture(1)
+    while True:
+        ret, frame = cap.read()
+        cv2.imshow('frame', frame)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = faceCascade.detectMultiScale(gray, 1.1, 5)
+        for (x,y,w,h) in faces:
+            cv2.rectangle(frame,(x-60,y-60),(x+60+w,y+60+h),(255,0,0),2)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            crop_img = frame[y-60:y+60+h, x-60:x+60+w]
+            cv2.imwrite("muka.jpg", crop_img)
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+    t1="muka.jpg"
+    img2 = Image.open(t1)
+    img2 = img2.resize((256,256), Image.ANTIALIAS)
+    img2 = ImageTk.PhotoImage(img2)
+    label = Label(image = img2)
+    label.place(x=387, y=161)
+    shortfilename = t1.split('/')[len(t1.split('/'))-1]
+    nofile2["text"] = shortfilename
+    nofile2["font"] = "century 10"
+
 def facialrecog():
     global f1,t1,img3,result,result2,wkt,result3
     start=time.time()
@@ -23,7 +50,7 @@ def facialrecog():
     val, index, t = Euclidian.MinEuclideanDistance(WData,WTest)
     print(val, index)
     print("---------------------------------------")
-    threshold = t/4
+    threshold = 130000000
     print("Threshold: ",threshold)
     if val<threshold:
         path = r"" + f1
@@ -163,6 +190,8 @@ def upload_file2():
 
 
 
+
+
 button2 = ttk.Button(text="upload file", command=upload_file2)
 button2.pack()
 button2.place(x=73, y=250)
@@ -170,6 +199,10 @@ button2.place(x=73, y=250)
 button3 = ttk.Button(text="calculate", command=facialrecog)
 button3.pack()
 button3.place(x=135, y=325)
+
+button3 = ttk.Button(text="cam", command=cam)
+button3.pack()
+button3.place(x=73, y=280)
 
 # button4 = ttk.Button(text="clear", command=clear)
 # button4.pack()

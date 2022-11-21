@@ -1,6 +1,7 @@
 import cv2
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 
 def ImgToMtrx(img):
     image = cv2.imread(r"" + img)
@@ -39,3 +40,5 @@ def covariance(pth):
     normT = np.transpose(norm)
     cov = np.matmul(norm,normT)
     return cov
+
+
