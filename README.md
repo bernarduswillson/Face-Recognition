@@ -14,4 +14,15 @@ Tubes 2 of Aljabar linear dan Geometri (IF2123). A face recognition program made
     - Take a photo with webcam
 - Display "kemiripan" percentage
 
+## How to run
+- Clone the repositories
+- Open the repositories in your IDE
+- Run "main.py"
+
+## How to use
+- Input the dataset that you want to use
+- Input the image you want to search or use the camera feature
+- If you decided to use the camera, press "q" to take the picture
+- press the calculate button and wait for your result
+
 
