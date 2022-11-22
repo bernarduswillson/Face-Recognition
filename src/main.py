@@ -22,7 +22,7 @@ def cam():
     cap = cv2.VideoCapture(1)
     while True:
         ret, frame = cap.read()
-        cv2.imshow('frame', frame)
+        cv2.imshow('Press q to take the picture!', frame)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = faceCascade.detectMultiScale(gray, 1.1, 5)
         for (x,y,w,h) in faces:
