@@ -50,7 +50,7 @@ def facialrecog():
     val, index, t = Euclidian.MinEuclideanDistance(WData,WTest)
     print(val, index)
     print("---------------------------------------")
-    threshold = t*0.5
+    threshold = t*0.4
     print("Threshold: ",threshold)
     if val<threshold:
         path = r"" + f1
@@ -64,7 +64,7 @@ def facialrecog():
                 closeimg=f1+"/"+file
                 break
             k += 1
-        kemiripan=((threshold-val)/threshold)*100
+        kemiripan=((t-val)/t)*100
         kemiripan=round(kemiripan,3)
         distance=round(val,2)
         tm=time.time()-start
