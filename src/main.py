@@ -50,7 +50,7 @@ def facialrecog():
     val, index, t = Euclidian.MinEuclideanDistance(WData,WTest)
     print(val, index)
     print("---------------------------------------")
-    threshold = 130000000
+    threshold = t*0.5
     print("Threshold: ",threshold)
     if val<threshold:
         path = r"" + f1

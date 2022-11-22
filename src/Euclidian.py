@@ -85,5 +85,4 @@ def MinEuclideanDistance(WTest,WData):
         if (min > selisih[i]):
             min = selisih[i]
             index = i
-        t=max-min
-    return min, index, t
+    return min, index, max
