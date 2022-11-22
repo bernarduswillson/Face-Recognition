@@ -70,13 +70,13 @@ def WTest(EFMatrix, pthdata, pth):
     W = np.matmul(norm, EFSum(EFMatrix))
     return W
 
-def MinEuclideanDistance(WTest,WData):
+def MinEuclideanDistance(WData,WTest):
     min = 9999999999999999999
-    selisih = [0 for i in range(len(WTest))]
+    selisih = [0 for i in range(len(WData))]
     t=0
     max=0
-    for i in range(len(WTest)):
-        selisih[i] = np.subtract(WData,WTest[i])
+    for i in range(len(WData)):
+        selisih[i] = np.subtract(WData[i],WTest)
         selisih[i] = np.square(selisih[i])
         selisih[i] = np.sum(selisih[i])
         selisih[i] = np.sqrt(selisih[i])
